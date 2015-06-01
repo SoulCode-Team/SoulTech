@@ -1,0 +1,16 @@
+[
+{
+  "modid": "soultech",
+  "name": "SoulTech",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "http://minecraft.curseforge.com/mc-mods/231167-soultech",
+  "authorList": ["SoulSkin"],
+  "credits": "The Forge and FML guys, for making modding a painless and enjoyable experience.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

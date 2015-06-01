@@ -1,0 +1,23 @@
+afterEvaluate {
+    ["forge", "fml", "liteloader"].each { fgPluginName ->
+        if (project.plugins.hasPlugin(fgPluginName)) {
+            def fgPlugin = project.plugins.findPlugin(fgPluginName)
+            def mcpSnapshotsDir = fgPlugin.delayedString("{CACHE_DIR}/minecraft/snapshots/{MC_VERSION}/").call()
+            def confDir = fgPlugin.delayedString("{USER_DEV}/conf/").call()    // UserConstants.CONF_DIR
+
+            def suffix = fgPluginName[0].toUpperCase() + fgPluginName.substring(1)
+            def taskName = "copyMcpSnapshot$suffix"
+            task(taskName, type: Copy) {
+                from mcpSnapshotsDir
+                into confDir
+                include '*.csv'
+            }
+
+            tasks[taskName].mustRunAfter extractUserDev //,extractMcpData
+            tasks.genSrgs.dependsOn tasks[taskName]
+
+            fgPlugin.getExtension().mappingsSet = false
+            fgPlugin.getExtension().setMappings(null)
+        }
+    }
+}

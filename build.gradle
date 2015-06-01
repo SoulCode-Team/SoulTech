@@ -1,0 +1,130 @@
+//## loads ForgeGradle ##//
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+apply plugin: "forge"
+
+//## .properties file loader ##//
+ext.configFile = file "build.properties"
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+//## Mod specific stuff ##//
+group = config.group
+version = config.minecraft_version + "-" + config.mod_version
+archivesBaseName = config.archivesBaseName
+String build_append = ""
+boolean full_build = true
+
+//## Jenkins build append ##//
+if (System.getenv()['BUILD_NUMBER']) {
+    build_append = "jnks-" + System.getenv()['BUILD_NUMBER']
+    full_build = false
+}
+
+//## Drone.io build append ##//
+if (System.getenv().DRONE_BUILD_NUMBER) {
+    build_append = "droneio-" + System.getenv().DRONE_BUILD_NUMBER
+    full_build = false
+}
+
+if (build_append != "") {
+    version += "." + build_append
+}
+
+//## Mincraft information ##//
+minecraft {
+    version = config.minecraft_version + "-" + config.forge_version
+    runDir = "RunStuff"
+
+    // the mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   snapshot are built nightly.
+    // stable_#            stables are built at the discretion of the MCP team.
+    // Use non-default mappings at your own risk. they may not allways work.
+    // simply re-run your setup task after changing the mappings to update your workspace.
+    mappings = config.mappings
+
+    replaceIn "lib/Reference.java"
+    replace "@VERSION@", "${config.mod_version}.${build_append}"
+    replace "@DATA", "${config.data}"
+    if (project.hasProperty("Mod_signature")) {
+        replace "@FINGERPRINT@", project.Mod_signature
+    }
+}
+
+dependencies {
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change. //
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // Replace info in files //
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.lang'
+        include '**/*.info'
+        include '**/*.properties'
+
+        // replace version and mcversion //
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    // copy everything else, that's not the files above //
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.lang'
+        exclude '**/*.info'
+        exclude '**/*.properties'
+    }
+}
+
+//## Create normal mod jar ##//
+jar {
+    classifier = "universal"
+    println "Build -> Creating a universal Jar."
+}
+
+//## add a source jar ##//
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'src'
+    println "Build -> Creating a source Jar."
+}
+
+//## add a deobfuscated jar ##//
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+    println "Build -> Creating a deobf Jar."
+}
+
+artifacts {
+    if (full_build) {
+        archives sourceJar
+        archives deobfJar
+    }
+}
+
+//This is a footer. This is only a footer. In the event that the footer does speak, we urge you to disregard its advice.
+
+//This code is taken from many other build.gradle's and is meant only to build the best mod ever.
+//Please use and dissect this code to better improve your own code.
+//This script was written without full understanding of ForgeGradle.
+
+//� 2015 SoulSkin, The World At Large (we are the world, we are the children)

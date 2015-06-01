@@ -1,0 +1,18 @@
+This document modifies the contents of COPYING_MAIN. Anything in said document
+remains valid unless removed or modified by this document.
+
+This Minecraft Modification ("mod") comes with NO WARRANTY. It should not
+cause problems, but if it does, the author, distributor, and any other party
+that has contributed to you, the user, using this "mod" are not liable for
+any damages or problems caused. That said, if you have problems, please report them
+to https://github.com/SoulSkin/SoulTech/issues so the author can attempt to correct any
+problems that may have caused the error. This "mod" should never be used to copy or distribute
+Minecraft's code or copyrighted material. Some parts of this "mod" may be modifications or 
+derivatives of Mojang's code/assets, and as such, should be only used in conjunction with 
+Mojang products and should not be permitted to be presented as the "mod"'s own material. 
+This "mod" falls under Minecraft's Terms Of Service and all other legal material allowing 
+Mojang rights over it's product and all "mods" created for it.
+
+TL;DR - Don't steal the mod author(s) or Mojang's code. Use the Author(s) with credit and 
+never distribute Mojang's code. All derivative works must be significantly different (besides 
+code required by forge, Minecraft, etc.).

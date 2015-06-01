@@ -1,0 +1,15 @@
+commands.kill.usage=/GOL_kill <distance> [player]\n/GOL_kill <distance> [x] [y] [z]
+
+
+string.interfaceFound=Remote Interface Set
+string.interfaceGood=Link Established
+string.interfaceBad=Distance too great
+
+itemGroup.GOL=Game Of Life
+
+tile.lifeCell.name=Cell Block
+tile.boundary.name=Boundary
+tile.controller.name=GOL Controller
+tile.lifeLogic.name=GOL Logic Block
+
+item.netherStar_Nugget.name=Nether Star Nugget
