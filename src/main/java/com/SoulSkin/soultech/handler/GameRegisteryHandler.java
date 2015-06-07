@@ -16,8 +16,11 @@ public class GameRegisteryHandler {
 
 	public static void registerItems() {
 		// Register Items//
-		if ( ConfigHandler.enableAreaDeath ) {
+		if ( !ConfigHandler.disableAreaDeath ) {
 			GameRegistry.registerItem( MOD.areaDeath, MOD.areaDeath.getUnlocalizedName() );
+		}
+		if ( !ConfigHandler.disableAreaDeath ) {
+			GameRegistry.registerItem( MOD.areaMagnet, MOD.areaMagnet.getUnlocalizedName() );
 		}
 	}
 

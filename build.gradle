@@ -34,18 +34,20 @@ boolean full_build = true
 
 //## Jenkins build append ##//
 if (System.getenv()['BUILD_NUMBER']) {
-    build_append = "jnks-" + System.getenv()['BUILD_NUMBER']
+    build_append = "jnks(" + System.getenv()['BUILD_NUMBER'] + ")"
     full_build = false
 }
 
 //## Drone.io build append ##//
 if (System.getenv().DRONE_BUILD_NUMBER) {
-    build_append = "droneio-" + System.getenv().DRONE_BUILD_NUMBER
+    build_append = "droneio(" + System.getenv().DRONE_BUILD_NUMBER + ")"
     full_build = false
 }
 
 if (build_append != "") {
-    version += "." + build_append
+    version = config.mod_version + " [" + config.minecraft_version + "]" + "-" + build_append
+} else {
+    version = config.mod_version + " [" + config.minecraft_version + "]"
 }
 
 //## Mincraft information ##//
@@ -62,7 +64,7 @@ minecraft {
 
     replaceIn "lib/Reference.java"
     replace "@VERSION@", "${config.mod_version}.${build_append}"
-    replace "@DATA", "${config.data}"
+    replace "@DATA@", "${config.data}"
     if (project.hasProperty("Mod_signature")) {
         replace "@FINGERPRINT@", project.Mod_signature
     }
@@ -86,7 +88,7 @@ processResources {
         expand 'version': project.version, 'mcversion': project.minecraft.version
     }
 
-    // copy everything else, that's not the files above //
+    // copy everything else, that's not the files above or a GIMP file //
     from(sourceSets.main.resources.srcDirs) {
         exclude '**/*.lang'
         exclude '**/*.info'
@@ -97,6 +99,7 @@ processResources {
 //## Create normal mod jar ##//
 jar {
     classifier = "universal"
+    exclude '**/*.xcf'
     println "Build -> Creating a universal Jar."
 }
 

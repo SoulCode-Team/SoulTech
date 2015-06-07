@@ -1,9 +1,10 @@
 package com.SoulSkin.soultech;
 
 import com.SoulSkin.soultech.block.soulChest;
-import com.SoulSkin.soultech.command.commandKill;
+import com.SoulSkin.soultech.command.commandRename;
 import com.SoulSkin.soultech.handler.*;
 import com.SoulSkin.soultech.item.tool.areaDeath;
+import com.SoulSkin.soultech.item.tool.areaMagnet;
 import com.SoulSkin.soultech.lib.Reference;
 import com.SoulSkin.soultech.proxy.CommonProxy;
 import com.SoulSkin.soultech.util.ModLogger;
@@ -13,8 +14,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
+import net.minecraftforge.common.util.EnumHelper;
 
 /**
  * Created by John on 6/2/2015.
@@ -45,16 +46,27 @@ public class soultech {
 
 	// Define Tools//
 	public static Item areaDeath;
+	public static Item areaMagnet;
 	public static Item soulPouch;
+	public static Item soulSteel;
 
 	// Define Blocks //
 	public static Block soulChest;
+
+	// Define Tool Material //
+	public static Item.ToolMaterial soulSteelTool   = EnumHelper.addToolMaterial( "soulSteel", 2, 1024, 7.0F, 4.0F, 15 );
+	public static Item.ToolMaterial soulShimmerTool = EnumHelper.addToolMaterial( "soulSHimmer", 3, 4096, 10.0F, 5.0F, 30 );
+
+	// Define Armor Material //
+	public static ItemArmor.ArmorMaterial soulSteelArmor   = EnumHelper.addArmorMaterial( "soulSteel", 200, new int[] {5, 10, 8, 5}, 15 );
+	public static ItemArmor.ArmorMaterial soulShimmerArmor = EnumHelper.addArmorMaterial( "soulShimmer", 800, new int[] {5, 10, 8, 5}, 30 );
+
 
 	@Mod.EventHandler
 	public void preInit( FMLPreInitializationEvent event ) {
 		ModLogger.info( "Loading " + Reference.MOD_NAME );
 		String tmp_string = "";
-		if ( Reference.MOTD != "@DATA@" && !StringUtils.isNullOrEmpty( Reference.MOTD ) ) {
+		if ( !StringUtils.isNullOrEmpty( Reference.MOTD ) && Reference.MOTD != "@DATA@" ) {
 			tmp_string = " would like to say: " + Reference.MOTD;
 		}
 		else {
@@ -66,7 +78,10 @@ public class soultech {
 		ConfigHandler.init( event.getSuggestedConfigurationFile() );
 
 		areaDeath = new areaDeath();
+		areaMagnet = new areaMagnet();
 		soulChest = new soulChest();
+
+		ModLogger.info( versionHandler.getLatestVersionTEST() );
 	}
 
 	public void recurse( int n ) {
@@ -77,8 +92,9 @@ public class soultech {
 	@Mod.EventHandler
 	public void init( FMLInitializationEvent event ) {
 		GameRegisteryHandler.registerAll();
-		RecipeHandler.craftingAll();
 		OreDictionaryHandler.registerAll();
+		RecipeHandler.craftingAll();
+
 	}
 
 	@Mod.EventHandler
@@ -87,15 +103,17 @@ public class soultech {
 
 	@Mod.EventHandler
 	public void serverLoad( FMLServerStartingEvent event ) {
-		event.registerServerCommand( new commandKill() );
+		event.registerServerCommand( new commandRename() );
+		event.registerServerCommand( new commandRename() );
+
 	}
 
 
 	@Mod.EventHandler
 	public void imfReceiver( FMLInterModComms.IMCEvent event ) {
 		for ( final FMLInterModComms.IMCMessage imcMessage : event.getMessages() ) {
-			if ( imcMessage.key.equalsIgnoreCase( "blacklist-areaDeath" ) ) {
-
+			if ( imcMessage.key.equalsIgnoreCase( "areaDeathBlacklist_add" ) ) {
+//				areaDeathRegistery.addEntityToBlacklist( imcMessage.getStringValue() );
 			}
 		}
 	}

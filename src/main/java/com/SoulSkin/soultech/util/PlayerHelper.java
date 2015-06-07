@@ -1,8 +1,10 @@
 package com.SoulSkin.soultech.util;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.MathHelper;
 
 /**
  * Created by John on 6/2/2015.
@@ -31,5 +33,12 @@ public class PlayerHelper {
 
 	public static void mountEntity( EntityPlayer player, Entity entity ) {
 		player.mountEntity( entity );
+	}
+
+	public Block findBlockUnderPlayer( EntityPlayer player ) {
+		int blockX = MathHelper.floor_double( player.posX );
+		int blockY = MathHelper.floor_double( player.boundingBox.minY ) - 1;
+		int blockZ = MathHelper.floor_double( player.posZ );
+		return player.worldObj.getBlock( blockX, blockY, blockZ );
 	}
 }

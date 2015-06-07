@@ -25,6 +25,7 @@ public abstract class baseModCommand implements ICommand {
 
 	public static void addAlias( String str ) {
 		aliases.add( StringUtils.prefixModID( str ) );
+		aliases.add( "ST_" + str );
 	}
 
 
@@ -35,7 +36,7 @@ public abstract class baseModCommand implements ICommand {
 
 	@Override
 	public String getCommandName() {
-		return this.name;
+		return StringUtils.prefixModID( this.name );
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public abstract class baseModCommand implements ICommand {
 
 	@Override
 	public boolean canCommandSenderUseCommand( ICommandSender sender ) {
-		return false;
+		return true;
 	}
 
 

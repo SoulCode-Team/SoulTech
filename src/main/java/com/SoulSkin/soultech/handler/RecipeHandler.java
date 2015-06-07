@@ -1,5 +1,6 @@
 package com.SoulSkin.soultech.handler;
 
+import com.SoulSkin.soultech.recipes.upgradeTeir;
 import com.SoulSkin.soultech.soultech;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
@@ -28,6 +29,7 @@ public class RecipeHandler {
 		craftingBlocks();
 //		craftingItems();
 		craftingTools();
+		craftingCustom();
 	}
 
 	public static void smeltingAll() {
@@ -61,7 +63,12 @@ public class RecipeHandler {
 
 	public static void craftingTools() {
 		// Recipes for Tools //
-		addRecipe( new ItemStack( MOD.areaDeath ), true, "igi", "bdb", "ibi", 'g', "blockGlass", 'b', "blockRedstone", 'i', "ingotIron" );
+		addRecipe( new ItemStack( MOD.areaDeath ), true, "nsn", "sds", "nsn", 's', Items.diamond_sword, 'n', "itemNetherStar", 'd', "blockDiamond" );
+		addRecipe( new ItemStack( MOD.areaMagnet ), true, "rir", "idi", "rnr", 'r', "blockRedstone", 'i', "ingotIron", 'd', "blockDiamond", 'n', "itemNetherStar" );
 
+	}
+
+	public static void craftingCustom() {
+		GameRegistry.addRecipe( new upgradeTeir() );
 	}
 }

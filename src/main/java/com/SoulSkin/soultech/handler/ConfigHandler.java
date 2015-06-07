@@ -28,6 +28,10 @@ public class ConfigHandler {
 
 	}
 
+	public static void resetConfig( File configFile ) {
+		config = new Configuration( configFile );
+	}
+
 	@SubscribeEvent
 	public void onConfigurationChangedEvent( ConfigChangedEvent.OnConfigChangedEvent event ) {
 		if ( event.modID.equalsIgnoreCase( Reference.MOD_ID ) ) {
@@ -38,10 +42,12 @@ public class ConfigHandler {
 	public static final boolean True  = true;
 	public static final boolean False = false;
 
-	public static int     rangeAreaDeath;
 	public static boolean disableSoulChest;
-	public static boolean enableAreaDeath;
+	public static int     rangeAreaDeath;
+	public static boolean disableAreaDeath;
 	public static boolean areaDeathBlackOrWhitelist;
+	public static boolean disableAreaMagnet;
+	public static int     rangeAreaMagnet;
 
 	public static void loadConfigs() {
 		ModLogger.info( "Loading Configs" );
@@ -49,9 +55,12 @@ public class ConfigHandler {
 		disableSoulChest = config.get( Reference.DISABLE_FUNCTIONS_CATEGORY, "Disable Soul Chests", false ).getBoolean();
 
 		// Configs for Tools//
-		enableAreaDeath = config.get( Reference.TOOLS_CATEGORY, "Enable Area Killer", true, "Area Killer Kills all hostile mobs in a radius (see below)" ).getBoolean();
-		rangeAreaDeath = config.get( Reference.TOOLS_CATEGORY, "Area Killer Range", 10, "the distance from the player in which the Area Killer can cause damage." ).getInt();
+		disableAreaDeath = config.get( Reference.DISABLE_TOOLS_CATEGORY, "Disable Area Killer", false, "Area Killer Kills all hostile mobs in a radius (see below)" ).getBoolean();
+		rangeAreaDeath = config.get( Reference.TOOLS_CATEGORY, "Area Killer Range", 5, "the distance from the player in which the Area Killer can cause damage (multiplied by teir/2 in-game)." ).getInt();
 		areaDeathBlackOrWhitelist = config.get( Reference.TOOLS_CATEGORY, "Is_Area_Killer_Blacklist", true, "determines if the Area Killer uses a blacklist(true or a whitelist(false)" ).getBoolean();
+
+		disableAreaMagnet = config.get( Reference.DISABLE_TOOLS_CATEGORY, "Disable Dislocation Magnet", false ).getBoolean();
+		rangeAreaMagnet = config.get( Reference.TOOLS_CATEGORY, "Dislocation Magnet Range", 5, "the distance from the player in which the Dislocation Magnet can attract items (multiplied by teir/2 in-game)." ).getInt();
 
 		if ( config.hasChanged() ) {
 			config.save();

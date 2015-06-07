@@ -1,8 +1,8 @@
 package com.SoulSkin.soultech.util;
 
 import com.SoulSkin.soultech.lib.Reference;
-
-import static net.minecraft.util.StatCollector.translateToLocal;
+import net.minecraft.item.Item;
+import net.minecraft.util.StatCollector;
 
 /**
  * Created by John on 6/2/2015.
@@ -32,11 +32,6 @@ public class StringUtils {
 		return ( str == null || str.length <= 0 || "".equals( str ) );
 	}
 
-	public static String localize( String unlocalized ) {
-		return translateToLocal( unlocalized );
-
-	}
-
 	public static String prefixModID( String str ) {
 		return Reference.MOD_ID + "_" + str;
 	}
@@ -63,5 +58,17 @@ public class StringUtils {
 			}
 		}
 		return true;
+	}
+
+	public static String localizeString( String unlocalizedStr ) {
+		return ( "" + StatCollector.translateToLocal( unlocalizedStr ) ).trim();
+	}
+
+	public static String getTooltipUnlocalized( Item item, int tooltipRow ) {
+		return ( "" + "tooltips.tooltip" + tooltipRow + "." + item.getUnlocalizedName().substring( 5 ) ).trim();
+	}
+
+	public static String getTooltipLocalized( Item item, int tooltipRow ) {
+		return localizeString( getTooltipUnlocalized( item, tooltipRow ) );
 	}
 }

@@ -6,7 +6,8 @@ Downloads
 
 Latest drone.io build status: ![Build Status](https://drone.io/github.com/SoulSkin/SoulTech/status.png)
 
-Unstable Releases From Drone.io: (https://drone.io/github.com/SoulSkin/SoulTech/files)
+Unstable Releases From Drone.io: [Files](https://drone.io/github.com/SoulSkin/SoulTech/files)
+
 Stable builds from CurseForge: (coming soon!)
 
 (The following is copied from https://github.com/pahimar/Equivalent-Exchange-3

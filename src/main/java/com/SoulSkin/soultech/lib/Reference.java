@@ -30,8 +30,9 @@ public class Reference {
 	public static final String PROXY_COMMON = BASE_PACKAGE + ".proxy." + "CommonProxy";
 
 	// Config Categories//
-	public static final String DISABLE_BLOCKS_CATEGORY    = "Disable.Blocks";
-	public static final String DISABLE_FUNCTIONS_CATEGORY = "Disable.Functions";
+	public static final String DISABLE_BLOCKS_CATEGORY    = "Disable_Blocks";
+	public static final String DISABLE_FUNCTIONS_CATEGORY = "Disable_Functions";
+	public static final String DISABLE_TOOLS_CATEGORY     = "Disable_Tools";
 	public static final String TOOLS_CATEGORY             = "Tools";
 
 	// Texture locations //
