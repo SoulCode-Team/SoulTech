@@ -1,4 +1,4 @@
-# SoulTech
+# SoulTech  ![SoulTech logo](https://raw.githubusercontent.com/SoulSkin/SoulTech/master/Logo/SoulTech%20Repo%20Logo.png)
 A Minecraft mod that adds tools, weapons, and tons of other cool stuff!
 
 Downloads
@@ -11,7 +11,7 @@ Unstable Releases From Drone.io: [Files](https://drone.io/github.com/SoulSkin/So
 Stable builds from CurseForge: (coming soon!)
 
 (The following is copied from https://github.com/pahimar/Equivalent-Exchange-3
-###Compiling Game of Life
+###Compiling SoulTech
 IMPORTANT: Please report any issues you have, there might be some problems with the documentation!
 Also make sure you know EXACTLY what you're doing!  It's not any of our faults if your OS crashes, becomes corrupted, etc.
 ***
@@ -21,9 +21,9 @@ Also make sure you know EXACTLY what you're doing!  It's not any of our faults i
 
 [Setup Git](#setup-git)
 
-[Setup SoulTech](#setup-SoulTech)
+[Setup SoulTech](#setup-soultech)
 
-[Compile SoulTech](#compile-SoulTech)
+[Compile SoulTech](#compile-soultech)
 
 [Updating Your Repository](#updating-your-repository)
 

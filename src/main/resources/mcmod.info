@@ -9,8 +9,9 @@
   "updateUrl": "http://minecraft.curseforge.com/mc-mods/231167-soultech",
   "authorList": ["SoulSkin"],
   "credits": "The Forge and FML guys, for making modding a painless and enjoyable experience.",
-  "logoFile": "",
+  "logoFile": "logo.png",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": ["Baubles"]
+  "useDependencyInformation": "true"
 }
 ]

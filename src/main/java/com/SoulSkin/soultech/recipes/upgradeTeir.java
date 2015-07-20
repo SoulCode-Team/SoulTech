@@ -19,6 +19,7 @@ public class upgradeTeir implements IRecipe {
 	public static soultech MOD;
 
 	// Item and how many required for next teir //
+	protected static final int       maxTeir          = 5;
 	protected static final ItemStack upgradeItemStack = new ItemStack( Items.diamond );
 	protected static final int       upgradeCount     = 4;
 
@@ -39,7 +40,7 @@ public class upgradeTeir implements IRecipe {
 			}
 
 			if ( checkItem.hasTagCompound() ) {
-				if ( checkItem.stackTagCompound.getByte( "teir" ) != 0 && checkItem.stackTagCompound.getByte( "teir" ) < 5 ) {
+				if ( checkItem.stackTagCompound.getByte( "teir" ) != 0 && checkItem.stackTagCompound.getByte( "teir" ) < maxTeir ) {
 					teiredItems++;
 				}
 			}
@@ -85,7 +86,7 @@ public class upgradeTeir implements IRecipe {
 
 	@Override
 	public int getRecipeSize() {
-		return 5;
+		return upgradeCount + 1;
 	}
 
 	@Override

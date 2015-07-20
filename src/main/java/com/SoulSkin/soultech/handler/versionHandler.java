@@ -39,7 +39,7 @@ public class versionHandler {
 	}
 
 	public boolean isLatestVersion() {
-		return Reference.VERSION == getLatestVersion() ? true : ( Reference.VERSION == "@VERSION@" );
+		return ( Reference.VERSION == getLatestVersion() || Reference.VERSION == "@VERSION@" );
 	}
 
 }

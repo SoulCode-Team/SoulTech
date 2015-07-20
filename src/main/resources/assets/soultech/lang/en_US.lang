@@ -1,0 +1,72 @@
+// Commands //
+commands.rename.usage=/soultech_rename <name>
+
+// General //
+itemGroup.soultech=SoulTech
+
+// General Tooltips //
+tooltips.status.activated=Activated
+tooltips.status.deactivated=Deactivated
+tooltips.status.disabled=Disabled In Config
+
+tooltips.directions.towards=Towards
+tooltips.directions.away=Away
+
+tooltips.weather.sun=Sun
+tooltips.weather.rain=Rain
+tooltips.weather.thunder=Thunder Storm
+tooltips.weather.lightning=Lightning
+
+// Blocks //
+tile.soulChest.name=Soul Chest
+
+
+// Items //
+item.soulShimmer.name=Soul Shimmer
+item.soulSteel.name=Soul Steel
+
+item.weathermans_Compass.name=Weatherman's Compass
+tooltips.tooltip1.weathermans_Compass=Shift right click to change mode.
+
+item.areaDeath.name=Area Killer
+item.areaDeath.warning=has created an Area Killer.
+tooltips.tooltip1.areaDeath=An aura of death lingers over this item for %i blocks.
+tooltips.tooltip2.areaDeath=It seems to avoid harming players.
+tooltips.tooltip3.areaDeath=Teir %b
+
+item.areaMagnet.name=Dislocation Magnet
+tooltips.tooltip1.areaMagnet=Seems to tear space to attract items and XP.
+tooltips.tooltip2.areaMagnet=Teir %b
+
+item.gazeCatcher.name=Gaze Catcher
+tooltips.tooltip1.gazeCatcher=Directs the gaze of nearby creatures
+
+item.soulSteel_Sword.name=Soul Steel Sword
+toltips.tooltip1.soulSteel_Sword=A cool, dark blade with a heart.
+item.soulSteel_Pick.name=Soul Steel Pickaxe
+item.soulSteel_Axe.name=Soul Steel Axe
+item.soulSteel_Hoe.name=Soul Steel Hoe
+item.soulSteel_Shovel.name=Soul Steel Shovel
+item.soulSteel_OmniTool.name=Soul Steel OmniTool
+toltips.tooltip1.soulSteel_OmniTool=Breaks through anything (be careful)
+
+item.soulShimmer_Sword.name=Soul Shimmer Sword
+toltips.tooltip1.soulShimmer_Sword=Light ripples through this blade.
+item.soulShimmerPick.name=Soul Shimmer Pickaxe
+item.soulShimmer_Axe.name=Soul Shimmer Axe
+item.soulShimmer_Hoe.name=Soul Shimmer Hoe
+item.soulShimmer_Shovel.name=Soul Shimmer Shovel
+item.soulShimmer_OmniTool.name=Soul Shimmer OmniTool
+toltips.tooltip1.soulShimmer_OmniTool=Breaks through anything (be careful)
+
+// Armor //
+item.soulShimmerHelmet.name=Soul Shimmer Helmet
+item.soulShimmerChestplate.name=Soul Shimmer Chestplate
+item.soulShimmerLeggings.name=Soul Shimmer Leggings
+item.soulShimmerBoots.name=Soul Shimmer Boots
+
+item.soulSteelHelmet.name=Soul Steel Helmet
+item.soulSteelChestplate.name=Soul Steel Chestplate
+item.soulSteelLeggings.name=Soul Steel Leggings
+item.soulSteelBoots.name=Soul Steel Boots
+

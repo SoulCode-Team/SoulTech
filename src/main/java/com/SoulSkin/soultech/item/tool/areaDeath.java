@@ -17,7 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -30,6 +30,8 @@ import java.util.List;
  * Copyright (c) 2015 SoulSkin and SoulCode Team.
  */
 public class areaDeath extends baseModTool implements ITaggedItem {
+
+	IIcon itemDisableIcon;
 
 	public areaDeath() {
 		super();
@@ -57,15 +59,17 @@ public class areaDeath extends baseModTool implements ITaggedItem {
 
 	@Override
 	public void addInformation( ItemStack stack, EntityPlayer player, List list, boolean par4 ) {
-		list.add( String.format( StringUtils.getTooltipLocalized( this, 1 ), ConfigHandler.rangeAreaDeath ) );
+		list.add( StringUtils.getFormattedTooltipLocalized( this, 1, ConfigHandler.rangeAreaDeath ) );
 		list.add( StringUtils.getTooltipLocalized( this, 2 ) );
 		if ( stack.hasTagCompound() ) {
-//			list.add( String.format( StringUtils.getTooltipLocalized( this, 3 ), stack.stackTagCompound.getByte( "teir" ) ) );
-			list.add( "Teir " + stack.stackTagCompound.getByte( "teir" ) );
+			list.add( StringUtils.getFormattedTooltipLocalized( this, 3, stack.stackTagCompound.getByte( "teir" ) ) );
 			list.add( StringUtils.localizeString( stack.stackTagCompound.getString( "status" ) ) );
 		}
 		else {
 			stack.stackTagCompound = initTagCompound();
+		}
+		if ( ConfigHandler.disableAreaDeath ) {
+			list.add( StringUtils.localizeString( "tooltips.status.disabled" ) );
 		}
 	}
 
@@ -95,57 +99,62 @@ public class areaDeath extends baseModTool implements ITaggedItem {
 	}
 
 	public void onUpdate( ItemStack stack, World worldIn, Entity entityIn, int p_77663_4_, boolean p_77663_5_ ) {
-		if ( !worldIn.isRemote ) {
-			int radius = ConfigHandler.rangeAreaDeath;
+		if ( !ConfigHandler.disableAreaDeath ) {
+			if ( !worldIn.isRemote ) {
+				int radius = ConfigHandler.rangeAreaDeath;
 
-			EntityPlayer ePlayer = null;
-			if ( entityIn instanceof EntityPlayer ) {
-				ePlayer = ( EntityPlayer ) entityIn;
-			}
+				EntityPlayer ePlayer = null;
+				if ( entityIn instanceof EntityPlayer ) {
+					ePlayer = ( EntityPlayer ) entityIn;
+				}
 
-			if ( stack.hasTagCompound() && stack.stackTagCompound.getString( "status" ) == "tooltips.status.activated" ) {
+				if ( stack.hasTagCompound() && stack.stackTagCompound.getString( "status" ).equals( "tooltips.status.activated" ) ) {
 
-				int teir = stack.hasTagCompound() ? ( stack.stackTagCompound.getByte( "teir" ) != 0 ) ? stack.stackTagCompound.getByte( "teir" ) : 1 : 1;
-				for ( int i = 1; i < worldIn.loadedEntityList.size(); i++ ) {
-					Entity entity = ( Entity ) worldIn.loadedEntityList.get( i );
-					if ( entity.getDistanceToEntity( entityIn ) <= radius * ( Math.ceil( ( teir + 1 ) / 2 ) ) && ( entity instanceof IMob || entity instanceof EntityWither || entity instanceof EntityDragonPart ) ) {
-						entity.attackEntityFrom( DamageSource.causePlayerDamage( ePlayer ), Math.max( ( ( radius + teir ) - entity.getDistanceToEntity( entityIn ) ) + ( ( teir + 1 ) / 2 ), 1.0F ) );
-						PlayerHelper.sentMessageToPlayer( ePlayer, String.valueOf( Math.max( ( ( radius + teir ) - entity.getDistanceToEntity( entityIn ) ) + teir + 1, 1.0F ) ) );
-						worldIn.spawnParticle( "spell", ePlayer.posX, ePlayer.posY, ePlayer.posZ, 0D, 2D, 0D );
+					int teir = stack.hasTagCompound() ? ( stack.stackTagCompound.getByte( "teir" ) != 0 ) ? stack.stackTagCompound.getByte( "teir" ) : 1 : 1;
+					for ( int i = 1; i < worldIn.loadedEntityList.size(); i++ ) {
+						Entity entity = ( Entity ) worldIn.loadedEntityList.get( i );
+						if ( entity.getDistanceToEntity( ePlayer ) <= radius * ( Math.ceil( ( teir + 1 ) / 2 ) ) && ( entity instanceof IMob || entity instanceof EntityWither || entity instanceof EntityDragonPart ) ) {
+							entity.attackEntityFrom( DamageSource.causePlayerDamage( ePlayer ), Math.max( ( ( radius + teir ) - entity.getDistanceToEntity( ePlayer ) ) + ( ( teir + 1 ) / 2 ), 1.0F ) );
+							PlayerHelper.sentMessageToPlayer( ePlayer, String.valueOf( Math.max( ( ( radius + teir ) - entity.getDistanceToEntity( ePlayer ) ) + teir + 1, 1.0F ) ) );
+						}
 					}
 				}
+
 			}
-		}
-		else {
-			int radius = ConfigHandler.rangeAreaDeath;
+			else {
+				int radius = ConfigHandler.rangeAreaDeath;
 
-			EntityPlayer ePlayer = null;
-			if ( entityIn instanceof EntityPlayer ) {
-				ePlayer = ( EntityPlayer ) entityIn;
-			}
+				EntityPlayer ePlayer = null;
+				if ( entityIn instanceof EntityPlayer ) {
+					ePlayer = ( EntityPlayer ) entityIn;
+				}
 
-			if ( stack.hasTagCompound() && stack.stackTagCompound.getString( "status" ) == "tooltips.status.activated" ) {
+				if ( stack.hasTagCompound() && stack.stackTagCompound.getString( "status" ).equals( "tooltips.status.activated" ) ) {
 
-				int teir = stack.hasTagCompound() ? ( stack.stackTagCompound.getByte( "teir" ) != 0 ) ? stack.stackTagCompound.getByte( "teir" ) : 1 : 1;
-				for ( int i = 1; i < worldIn.loadedEntityList.size(); i++ ) {
-					Entity entity = ( Entity ) worldIn.loadedEntityList.get( i );
-					if ( entity.getDistanceToEntity( entityIn ) <= radius * ( Math.ceil( ( teir + 1 ) / 2 ) ) && ( entity instanceof IMob || entity instanceof EntityWither || entity instanceof EntityDragonPart ) ) {
-						Vec3 entityVec = Vec3.createVectorHelper( entity.posX, entity.posY, entity.posZ );
-						Vec3 playerVec = Vec3.createVectorHelper( ePlayer.posX, ePlayer.posY, ePlayer.posZ );
+					for ( int i = 1; i < worldIn.loadedEntityList.size(); i++ ) {
+						Entity entity = ( Entity ) worldIn.loadedEntityList.get( i );
+						if ( entity.getDistanceToEntity( ePlayer ) <= radius && ( entity instanceof IMob || entity instanceof EntityWither || entity instanceof EntityDragonPart ) ) {
 
-						worldIn.spawnParticle( "portal", ePlayer.posX, ePlayer.posY, ePlayer.posZ, ( entity.posX - ePlayer.posX ) / 1, ( entity.posY - ePlayer.posY - 1 ) / 1, ( entity.posZ - ePlayer.posZ ) / 1 );
-						worldIn.spawnParticle( "flame", ePlayer.posX, ePlayer.posY, ePlayer.posZ, ( entity.posX - ePlayer.posX ) / 9, ( entity.posY - ePlayer.posY - 1 ) / 9, ( entity.posZ - ePlayer.posZ ) / 9 );
-//						worldIn.spawnParticle( "largesmoke", ePlayer.posX, ePlayer.posY, ePlayer.posZ, ( entity.posX - ePlayer.posX )/9, ( entity.posY - ePlayer.posY-1 )/9, ( entity.posZ - ePlayer.posZ )/9 );
-//						worldIn.spawnParticle( "spell", ePlayer.posX, ePlayer.posY, ePlayer.posZ, ( entity.posX - ePlayer.posX )*9, (( entity.posY - ePlayer.posY-1 )+1)*9, ( entity.posZ - ePlayer.posZ )*9 );
+							worldIn.spawnParticle( "portal", ePlayer.posX, ePlayer.posY, ePlayer.posZ, ( entity.posX - ePlayer.posX ) / 1, ( entity.posY - ePlayer.posY - 1 ) / 1, ( entity.posZ - ePlayer.posZ ) / 1 );
+							worldIn.spawnParticle( "flame", ePlayer.posX, ePlayer.posY, ePlayer.posZ, ( entity.posX - ePlayer.posX ) / 9, ( entity.posY - ePlayer.posY - 1 ) / 9, ( entity.posZ - ePlayer.posZ ) / 9 );
 //						worldIn.spawnParticle( "blockcrack_" + Block.getIdFromBlock(Blocks.obsidian) + "_0", ePlayer.posX, ePlayer.posY, ePlayer.posZ, ( entity.posX - ePlayer.posX )/2, ( entity.posY - ePlayer.posY )/2, ( entity.posZ - ePlayer.posZ )/2 );
+						}
 					}
 				}
 			}
 		}
 	}
 
+	@Override
 	@SideOnly( Side.CLIENT )
 	public void registerIcons( IIconRegister par1registerIcon ) {
 		this.itemIcon = par1registerIcon.registerIcon( ModTextures.GetTextureNameFull( this, Reference.TOOL_FOLDER ) );
+		this.itemDisableIcon = par1registerIcon.registerIcon( ( ModTextures.GetTextureNameFull( this, Reference.TOOL_FOLDER ) ).replace( Reference.IMG_EXTENSION, "" ) + "_disabled" + Reference.IMG_EXTENSION );
+	}
+
+	@Override
+	@SideOnly( Side.CLIENT )
+	public IIcon getIcon( ItemStack stack, int pass ) {
+		return ( stack.hasDisplayName() && stack.stackTagCompound.getString( "status" ).equals( "tooltips.status.activated" ) ) ? this.itemIcon : this.itemDisableIcon;
 	}
 }

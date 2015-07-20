@@ -64,11 +64,23 @@ public class StringUtils {
 		return ( "" + StatCollector.translateToLocal( unlocalizedStr ) ).trim();
 	}
 
+	public static String localizeStringFormatted( String unlocalizedStr, Object... obj ) {
+		return ( "" + StatCollector.translateToLocalFormatted( unlocalizedStr, obj ) ).trim();
+	}
+
 	public static String getTooltipUnlocalized( Item item, int tooltipRow ) {
 		return ( "" + "tooltips.tooltip" + tooltipRow + "." + item.getUnlocalizedName().substring( 5 ) ).trim();
 	}
 
 	public static String getTooltipLocalized( Item item, int tooltipRow ) {
 		return localizeString( getTooltipUnlocalized( item, tooltipRow ) );
+	}
+
+	public static String getTooltipLocalizedChecked( Item item, int tooltipRow ) {
+		return ( localizeString( getTooltipUnlocalized( item, tooltipRow ) ).equals( getTooltipUnlocalized( item, tooltipRow ) ) ) ? null : localizeString( getTooltipUnlocalized( item, tooltipRow ) );
+	}
+
+	public static String getFormattedTooltipLocalized( Item item, int tooltipRow, Object... obj ) {
+		return localizeStringFormatted( getTooltipUnlocalized( item, tooltipRow ), obj );
 	}
 }

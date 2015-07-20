@@ -43,11 +43,17 @@ public class ConfigHandler {
 	public static final boolean False = false;
 
 	public static boolean disableSoulChest;
+	public static boolean disableWeathermansCompass;
+
 	public static int     rangeAreaDeath;
 	public static boolean disableAreaDeath;
 	public static boolean areaDeathBlackOrWhitelist;
+
 	public static boolean disableAreaMagnet;
 	public static int     rangeAreaMagnet;
+
+	public static int     rangeGazeCatcher;
+	public static boolean disableGazeCatcher;
 
 	public static void loadConfigs() {
 		ModLogger.info( "Loading Configs" );
@@ -55,12 +61,17 @@ public class ConfigHandler {
 		disableSoulChest = config.get( Reference.DISABLE_FUNCTIONS_CATEGORY, "Disable Soul Chests", false ).getBoolean();
 
 		// Configs for Tools//
-		disableAreaDeath = config.get( Reference.DISABLE_TOOLS_CATEGORY, "Disable Area Killer", false, "Area Killer Kills all hostile mobs in a radius (see below)" ).getBoolean();
-		rangeAreaDeath = config.get( Reference.TOOLS_CATEGORY, "Area Killer Range", 5, "the distance from the player in which the Area Killer can cause damage (multiplied by teir/2 in-game)." ).getInt();
+		disableAreaDeath = config.get( Reference.DISABLE_TOOLS_CATEGORY, "Disable_Area_Killer", false, "Area Killer Kills all hostile mobs in a radius (see below)" ).getBoolean();
+		rangeAreaDeath = config.get( Reference.TOOLS_CATEGORY, "Area_Killer_Range", 5, "the distance from the player in which the Area Killer can cause damage (multiplied by teir/2 in-game)." ).getInt();
 		areaDeathBlackOrWhitelist = config.get( Reference.TOOLS_CATEGORY, "Is_Area_Killer_Blacklist", true, "determines if the Area Killer uses a blacklist(true or a whitelist(false)" ).getBoolean();
 
-		disableAreaMagnet = config.get( Reference.DISABLE_TOOLS_CATEGORY, "Disable Dislocation Magnet", false ).getBoolean();
+		disableAreaMagnet = config.get( Reference.DISABLE_TOOLS_CATEGORY, "Disable_Dislocation_Magnet", false ).getBoolean();
 		rangeAreaMagnet = config.get( Reference.TOOLS_CATEGORY, "Dislocation Magnet Range", 5, "the distance from the player in which the Dislocation Magnet can attract items (multiplied by teir/2 in-game)." ).getInt();
+
+		disableGazeCatcher = config.get( Reference.DISABLE_TOOLS_CATEGORY, "Disable_Gaze_Catcher", false ).getBoolean();
+		rangeGazeCatcher = config.get( Reference.TOOLS_CATEGORY, "Gaze_Catcher_Range", 5, "the distance from the player in which the gaze Catcher can move gazes." ).getInt();
+
+		disableWeathermansCompass = config.get( Reference.DISABLE_TOOLS_CATEGORY, "Disable_Weatherman's_Compass", false ).getBoolean();
 
 		if ( config.hasChanged() ) {
 			config.save();

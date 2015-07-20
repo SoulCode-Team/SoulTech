@@ -10,20 +10,18 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
 apply plugin: "forge"
+apply plugin: "curseforge"
 
 //## .properties file loader ##//
-ext.configFile = file "build.properties"
-configFile.withReader {
-    def prop = new Properties()
-    prop.load(it)
-    project.ext.config = new ConfigSlurper().parse prop
-}
+ext.config = parseConfig(file('build.properties'))
+ext.priv = parseConfig(file('private.properties'))
 
 //## Mod specific stuff ##//
 group = config.group
@@ -45,9 +43,9 @@ if (System.getenv().DRONE_BUILD_NUMBER) {
 }
 
 if (build_append != "") {
-    version = config.mod_version + " [" + config.minecraft_version + "]" + "-" + build_append
+    version = config.mod_version + "_[" + config.minecraft_version + "]" + "-" + build_append
 } else {
-    version = config.mod_version + " [" + config.minecraft_version + "]"
+    version = config.mod_version + "_[" + config.minecraft_version + "]"
 }
 
 //## Mincraft information ##//
@@ -70,7 +68,28 @@ minecraft {
     }
 }
 
+//## Config loader ##//
+def parseConfig(File config) {
+    config.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
+    }
+}
+
+repositories {
+//    maven {
+//        name = "baubles"
+//        url = "http://mvn.rx14.co.uk/repo/"
+//    }
+}
+
 dependencies {
+    //compile files(
+    //        'Baubles-deobf.jar'
+    //)
+//    compile 'com.azanor.baubles:Baubles:1.7.10-1.0.1.10'
+
 }
 
 processResources {
@@ -99,6 +118,7 @@ processResources {
 //## Create normal mod jar ##//
 jar {
     classifier = "universal"
+    //## Exclude GIMP save files from jars ##//
     exclude '**/*.xcf'
     println "Build -> Creating a universal Jar."
 }
@@ -122,6 +142,13 @@ artifacts {
         archives sourceJar
         archives deobfJar
     }
+}
+
+curse {
+    apiKey = priv.cfkey
+    projectId = "225643"
+    changelog = ""
+    releaseType = "release"
 }
 
 //This is a footer. This is only a footer. In the event that the footer does speak, we urge you to disregard its advice.

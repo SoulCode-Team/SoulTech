@@ -57,43 +57,48 @@ public class areaMagnet extends baseModTool implements ITaggedItem {
 	public void addInformation( ItemStack stack, EntityPlayer player, List list, boolean par4 ) {
 		list.add( StringUtils.getTooltipLocalized( this, 1 ) );
 		if ( stack.hasTagCompound() ) {
-			//TODO work on fixing this localization problem
-			list.add( String.format( StringUtils.getTooltipLocalized( this, 2 ), stack.stackTagCompound.getByte( "teir" ) ) );
+			list.add( StringUtils.getFormattedTooltipLocalized( this, 2, stack.stackTagCompound.getByte( "teir" ) ) );
 			list.add( StringUtils.localizeString( stack.stackTagCompound.getString( "status" ) ) );
 		}
 		else {
 			stack.stackTagCompound = initTagCompound();
 		}
+		if ( ConfigHandler.disableAreaMagnet ) {
+			list.add( StringUtils.localizeString( "tooltips.status.disabled" ) );
+		}
 	}
 
 	public void onUpdate( ItemStack stack, World worldIn, Entity entityIn, int p_77663_4_, boolean p_77663_5_ ) {
-		if ( !worldIn.isRemote ) {
-			int radius = ConfigHandler.rangeAreaMagnet;
+		if ( !ConfigHandler.disableAreaMagnet ) {
+			if ( !worldIn.isRemote ) {
+				int radius = ConfigHandler.rangeAreaMagnet;
 
-			EntityPlayer ePlayer = null;
-			if ( entityIn instanceof EntityPlayer ) {
-				ePlayer = ( EntityPlayer ) entityIn;
-			}
+				EntityPlayer ePlayer = null;
+				if ( entityIn instanceof EntityPlayer ) {
+					ePlayer = ( EntityPlayer ) entityIn;
+				}
 
-			if ( stack.hasTagCompound() && stack.stackTagCompound.getString( "status" ) == "tooltips.status.activated" ) {
+				if ( stack.hasTagCompound() && stack.stackTagCompound.getString( "status" ) == "tooltips.status.activated" ) {
 
-				int teir = stack.hasTagCompound() ? ( stack.stackTagCompound.getByte( "teir" ) != 0 ) ? stack.stackTagCompound.getByte( "teir" ) : 1 : 1;
-				for ( int i = 1; i < worldIn.loadedEntityList.size(); i++ ) {
-					Entity entity = ( Entity ) worldIn.loadedEntityList.get( i );
-					if ( entity.getDistanceToEntity( entityIn ) <= radius * ( ( teir + 1 ) / 2 ) ) {
+					int teir = stack.hasTagCompound() ? ( stack.stackTagCompound.getByte( "teir" ) != 0 ) ? stack.stackTagCompound.getByte( "teir" ) : 1 : 1;
+					for ( int i = 1; i < worldIn.loadedEntityList.size(); i++ ) {
+						//TODO work on fixing this localization problem
+						Entity entity = ( Entity ) worldIn.loadedEntityList.get( i );
+						if ( entity.getDistanceToEntity( entityIn ) <= radius * ( ( teir + 1 ) / 2 ) ) {
 
-						if ( entity instanceof EntityItem ) {
+							if ( entity instanceof EntityItem ) {
 
-							if ( ( ( EntityItem ) entity ).getThrower() != ePlayer.getCommandSenderName() ) {
-								entity.setPosition( ePlayer.posX, ePlayer.posY, ePlayer.posZ );
-								if ( ( ( EntityItem ) entity ).delayBeforeCanPickup > 10 - teir * 2 ) {
-									( ( EntityItem ) entity ).delayBeforeCanPickup = ( 10 - teir * 2 );
+								if ( ( ( EntityItem ) entity ).getThrower() != ePlayer.getCommandSenderName() ) {
+									entity.setPosition( ePlayer.posX, ePlayer.posY, ePlayer.posZ );
+									if ( ( ( EntityItem ) entity ).delayBeforeCanPickup > 10 - teir * 2 ) {
+										( ( EntityItem ) entity ).delayBeforeCanPickup = ( 10 - teir * 2 );
+									}
 								}
 							}
-						}
 
-						if ( entity instanceof EntityXPOrb ) {
-							entity.setPosition( ePlayer.posX, ePlayer.posY, ePlayer.posZ );
+							if ( entity instanceof EntityXPOrb ) {
+								entity.setPosition( ePlayer.posX, ePlayer.posY, ePlayer.posZ );
+							}
 						}
 					}
 				}

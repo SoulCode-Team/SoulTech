@@ -4,6 +4,7 @@ import com.SoulSkin.soultech.recipes.upgradeTeir;
 import com.SoulSkin.soultech.soultech;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -30,6 +31,8 @@ public class RecipeHandler {
 //		craftingItems();
 		craftingTools();
 		craftingCustom();
+		addArmorRecipes( ( MOD.soulSteel ), stackOf( MOD.soulSteelBoots ), stackOf( MOD.soulSteelLeggings ), stackOf( MOD.soulSteelChestplate ), stackOf( MOD.soulSteelHelmet ) );
+		addArmorRecipes( ( MOD.soulShimmer ), stackOf( MOD.soulShimmerBoots ), stackOf( MOD.soulShimmerLeggings ), stackOf( MOD.soulShimmerChestplate ), stackOf( MOD.soulShimmerHelmet ) );
 	}
 
 	public static void smeltingAll() {
@@ -39,14 +42,34 @@ public class RecipeHandler {
 		GameRegistry.addRecipe( new ShapedOreRecipe( result, recipe ) );
 	}
 
-	// public static void addShapelessRecipe(ItemStack result, Object... recipe)
-	// {
-	// CraftingManager.getInstance().getRecipeList().add(new
-	// ShapelessOreRecipe(result, recipe));
-	// }
-
 	public static void addShapelessRecipe( ItemStack result, Object... recipe ) {
 		GameRegistry.addRecipe( new ShapelessOreRecipe( result, recipe ) );
+	}
+
+	/**
+	 * registers crafting recipes for armor given material and output armor.
+	 * (ore dictionary enabled)
+	 *
+	 * @param material
+	 * @param output   [boots, leggings, chestplate, helmet]
+	 */
+	public static void addArmorRecipes( Object material, ItemStack... output ) {
+		if ( output[0] != null ) {
+			addRecipe( output[0], true, "X X", "X X", 'X', material );
+		}
+		if ( output[1] != null ) {
+			addRecipe( output[1], true, "XXX", "X X", "X X", 'X', material );
+		}
+		if ( output[2] != null ) {
+			addRecipe( output[2], true, "X X", "XXX", "XXX", 'X', material );
+		}
+		if ( output[3] != null ) {
+			addRecipe( output[3], true, "XXX", "X X", 'X', material );
+		}
+	}
+
+	public static ItemStack stackOf( Item item ) {
+		return new ItemStack( item );
 	}
 
 	public static void craftingBlocks() {
