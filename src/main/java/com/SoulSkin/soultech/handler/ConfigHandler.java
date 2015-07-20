@@ -55,6 +55,13 @@ public class ConfigHandler {
 	public static int     rangeGazeCatcher;
 	public static boolean disableGazeCatcher;
 
+	public static boolean  useSearchBlacklist;
+	public static boolean  enableOnlySafesearch;
+	public static boolean  disablePrivateSearch;
+	public static boolean  disablePublicSearch;
+	public static String   googleDevKey;
+	public static String[] blacklistPlayerIgnore;
+
 	public static void loadConfigs() {
 		ModLogger.info( "Loading Configs" );
 		// Configs for Blocks//
@@ -72,6 +79,14 @@ public class ConfigHandler {
 		rangeGazeCatcher = config.get( Reference.TOOLS_CATEGORY, "Gaze_Catcher_Range", 5, "the distance from the player in which the gaze Catcher can move gazes." ).getInt();
 
 		disableWeathermansCompass = config.get( Reference.DISABLE_TOOLS_CATEGORY, "Disable_Weatherman's_Compass", false ).getBoolean();
+
+		// Search Configs //
+		useSearchBlacklist = config.get( Reference.SEARCH_CATEGORY, "Use_Search_Blacklist", true, "Set to true to filter out inapropriate search queries and results." ).getBoolean();
+		enableOnlySafesearch = config.get( Reference.SEARCH_CATEGORY, "Require_Safesearch", true, "Set to true to require Safesearch for all searches /n(Safesearch is required in public searches and default on private searches)" ).getBoolean();
+		disablePrivateSearch = config.get( Reference.SEARCH_CATEGORY, "Disable_Private_Search", false ).getBoolean();
+		disablePublicSearch = config.get( Reference.SEARCH_CATEGORY, "Disable_Public_Search", false ).getBoolean();
+		blacklistPlayerIgnore = config.get( Reference.SEARCH_CATEGORY, "Blacklist_player_ignore", new String[] {}, "Comma-separated list of players' UUIDs whose qeries and results are not checked against the blacklist (if enabled)" ).getStringList();
+		googleDevKey = config.get( Reference.SEARCH_CATEGORY, "Google_developer_Key", "", "Developer key used for searches. Please use your own if you have one! (Servers MUST use their own)/nLearn how to get one at http://bit.ly/googleAPIKey" ).getString();
 
 		if ( config.hasChanged() ) {
 			config.save();

@@ -21,7 +21,9 @@ apply plugin: "curseforge"
 
 //## .properties file loader ##//
 ext.config = parseConfig(file('build.properties'))
-ext.priv = parseConfig(file('private.properties'))
+if (file('private.properties').exists()) {
+    ext.priv = parseConfig(file('private.properties'))
+}
 
 //## Mod specific stuff ##//
 group = config.group
@@ -63,6 +65,7 @@ minecraft {
     replaceIn "lib/Reference.java"
     replace "@VERSION@", "${config.mod_version}.${build_append}"
     replace "@DATA@", "${config.data}"
+    replace "@G_KEY@", "${priv.google_dev_key}"
     if (project.hasProperty("Mod_signature")) {
         replace "@FINGERPRINT@", project.Mod_signature
     }
@@ -145,10 +148,12 @@ artifacts {
 }
 
 curse {
-    apiKey = priv.cfkey
-    projectId = "225643"
-    changelog = ""
-    releaseType = "release"
+    if (file('private.properties').exists()) {
+        apiKey = priv.cfkey
+        projectId = "225643"
+        changelog = ""
+        releaseType = "release"
+    }
 }
 
 //This is a footer. This is only a footer. In the event that the footer does speak, we urge you to disregard its advice.

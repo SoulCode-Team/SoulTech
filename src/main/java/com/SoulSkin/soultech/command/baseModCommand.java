@@ -1,8 +1,7 @@
 package com.SoulSkin.soultech.command;
 
 import com.SoulSkin.soultech.util.StringUtils;
-import net.minecraft.command.ICommand;
-import net.minecraft.command.ICommandSender;
+import net.minecraft.command.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
  * SoulTech is licensed under GPLv2. See COPYING* files for more.
  * Copyright (c) 2015 SoulSkin and SoulCode Team.
  */
-public abstract class baseModCommand implements ICommand {
+public abstract class baseModCommand extends CommandBase implements ICommand {
 
 	private static List   aliases = new ArrayList();
 	private static String name    = "";
@@ -31,7 +30,7 @@ public abstract class baseModCommand implements ICommand {
 
 	@Override
 	public String getCommandUsage( ICommandSender sender ) {
-		return "command." + name + ".usage";
+		return "commands." + name + ".usage";
 	}
 
 	@Override
@@ -52,6 +51,8 @@ public abstract class baseModCommand implements ICommand {
 
 	@Override
 	public int compareTo( Object o ) {
-		return 0;
+		return this.compareTo( ( ICommand ) o );
 	}
+
+
 }

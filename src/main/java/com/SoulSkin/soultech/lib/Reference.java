@@ -19,6 +19,7 @@ public class Reference {
 	public static final String VERSION      = "@VERSION@";
 	public static final String BASE_PACKAGE = "com.SoulSkin.soultech";
 	public static final String MOTD         = "@DATA@";
+	public static final String GOOGLE_KEY = "@G_KEY@";
 	public static final String FINGERPRINT  = "@FINGERPRINT@";
 //	public static final String GUI_FACTORY_CLASS = "com.SoulSkin.soultech.client.gui.GuiFactory";
 
@@ -34,6 +35,7 @@ public class Reference {
 	public static final String DISABLE_FUNCTIONS_CATEGORY = "Disable_Functions";
 	public static final String DISABLE_TOOLS_CATEGORY     = "Disable_Tools";
 	public static final String TOOLS_CATEGORY             = "Tools";
+	public static final String SEARCH_CATEGORY = "Search";
 
 	// Texture locations //
 	public static final String TOOL_FOLDER          = "tool/";

@@ -54,6 +54,11 @@ public class soultech {
 		}
 	};
 
+	/**
+	 * Google Developer Key used in searches; set in init.
+	 */
+	private static String GDK = "";
+
 	// Define Tools//
 	public static Item areaDeath;
 	public static Item areaMagnet;
@@ -187,6 +192,12 @@ public class soultech {
 		GameRegisteryHandler.registerAll();
 		OreDictionaryHandler.registerAll();
 		RecipeHandler.craftingAll();
+
+		// Set Google Dev Key to value. Prioritize Config, but use Reference value if needed. //
+		GDK = ConfigHandler.googleDevKey;
+		if ( Reference.GOOGLE_KEY != "@G+KEY@" && StringUtils.isNullOrEmpty( GDK ) ) {
+			GDK = Reference.GOOGLE_KEY;
+		}
 
 	}
 

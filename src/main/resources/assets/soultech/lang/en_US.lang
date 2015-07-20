@@ -1,5 +1,6 @@
 // Commands //
 commands.rename.usage=/soultech_rename <name>
+commands.search.usage=/search <result_count>
 
 // General //
 itemGroup.soultech=SoulTech
@@ -69,4 +70,3 @@ item.soulSteelHelmet.name=Soul Steel Helmet
 item.soulSteelChestplate.name=Soul Steel Chestplate
 item.soulSteelLeggings.name=Soul Steel Leggings
 item.soulSteelBoots.name=Soul Steel Boots
-
