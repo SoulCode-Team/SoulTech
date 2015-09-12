@@ -15,44 +15,42 @@ import java.util.List;
  */
 public abstract class baseModCommand extends CommandBase implements ICommand {
 
-	private static List   aliases = new ArrayList();
-	private static String name    = "";
+    private static List aliases = new ArrayList();
+    private static String name = "";
 
-	public baseModCommand( String str ) {
-		this.name = StringUtils.prefixModID( str );
-	}
+    public baseModCommand(String str) {
+        this.name = StringUtils.prefixModID(str);
+    }
 
-	public static void addAlias( String str ) {
-		aliases.add( StringUtils.prefixModID( str ) );
-		aliases.add( "ST_" + str );
-	}
-
-
-	@Override
-	public String getCommandUsage( ICommandSender sender ) {
-		return "commands." + name + ".usage";
-	}
-
-	@Override
-	public String getCommandName() {
-		return StringUtils.prefixModID( this.name );
-	}
-
-	@Override
-	public List getCommandAliases() {
-		return this.aliases;
-	}
-
-	@Override
-	public boolean canCommandSenderUseCommand( ICommandSender sender ) {
-		return true;
-	}
+    public static void addAlias(String str) {
+        aliases.add(StringUtils.prefixModID(str));
+        aliases.add("ST_" + str);
+    }
 
 
-	@Override
-	public int compareTo( Object o ) {
-		return this.compareTo( ( ICommand ) o );
-	}
+    @Override
+    public String getCommandUsage(ICommandSender sender) {
+        return "commands." + name + ".usage";
+    }
+
+    @Override
+    public String getCommandName() {
+        return StringUtils.prefixModID(this.name);
+    }
+
+    @Override
+    public List getCommandAliases() {
+        return this.aliases;
+    }
+
+    @Override
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+        return true;
+    }
 
 
+    @Override
+    public int compareTo(Object o) {
+        return this.compareTo((ICommand) o);
+    }
 }

@@ -11,5 +11,5 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public interface ITaggedItem {
 
-	NBTTagCompound initTagCompound();
+    NBTTagCompound initTagCompound();
 }

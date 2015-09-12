@@ -16,82 +16,77 @@ import net.minecraft.world.World;
  */
 public class upgradeTeir implements IRecipe {
 
-	public static soultech MOD;
+    public static soultech MOD;
 
-	// Item and how many required for next teir //
-	protected static final int       maxTeir          = 5;
-	protected static final ItemStack upgradeItemStack = new ItemStack( Items.diamond );
-	protected static final int       upgradeCount     = 4;
+    // Item and how many required for next teir //
+    protected static final int maxTeir = 5;
+    protected static final ItemStack upgradeItemStack = new ItemStack(Items.diamond);
+    protected static final int upgradeCount = 4;
 
-	@Override
-	public boolean matches( InventoryCrafting inventorycrafting, World world ) {
+    @Override
+    public boolean matches(InventoryCrafting inventorycrafting, World world) {
 
-		int teiredItems  = 0;
-		int upgradeItems = 0;
+        int teiredItems = 0;
+        int upgradeItems = 0;
 
-		for ( int i = 0; i < inventorycrafting.getSizeInventory(); i++ ) {
-			if ( inventorycrafting.getStackInSlot( i ) == null ) {
-				continue;
-			}
+        for (int i = 0; i < inventorycrafting.getSizeInventory(); i++) {
+            if (inventorycrafting.getStackInSlot(i) == null) {
+                continue;
+            }
 
-			ItemStack checkItem = inventorycrafting.getStackInSlot( i );
-			if ( checkItem.getItem() == null ) {
-				continue;
-			}
+            ItemStack checkItem = inventorycrafting.getStackInSlot(i);
+            if (checkItem.getItem() == null) {
+                continue;
+            }
 
-			if ( checkItem.hasTagCompound() ) {
-				if ( checkItem.stackTagCompound.getByte( "teir" ) != 0 && checkItem.stackTagCompound.getByte( "teir" ) < maxTeir ) {
-					teiredItems++;
-				}
-			}
+            if (checkItem.hasTagCompound()) {
+                if (checkItem.stackTagCompound.getByte("teir") != 0 && checkItem.stackTagCompound.getByte("teir") < maxTeir) {
+                    teiredItems++;
+                }
+            }
 
-			if ( checkItem.isItemEqual( upgradeItemStack ) ) {
-				upgradeItems++;
-			}
+            if (checkItem.isItemEqual(upgradeItemStack)) {
+                upgradeItems++;
+            }
+        }
+        if (upgradeItems == upgradeCount && teiredItems == 1) {
+            return true;
+        }
 
-		}
-		if ( upgradeItems == upgradeCount && teiredItems == 1 ) {
-			return true;
-		}
+        return false;
+    }
 
-		return false;
+    @Override
+    public ItemStack getCraftingResult(InventoryCrafting inventorycrafting) {
+        ItemStack returnStack = null;
 
-	}
+        for (int i = 0; i < inventorycrafting.getSizeInventory(); i++) {
+            if (inventorycrafting.getStackInSlot(i) == null) {
+                continue;
+            }
 
-	@Override
-	public ItemStack getCraftingResult( InventoryCrafting inventorycrafting ) {
-		ItemStack returnStack = null;
+            ItemStack checkItem = inventorycrafting.getStackInSlot(i);
+            if (checkItem.getItem() == null) {
+                continue;
+            }
 
-		for ( int i = 0; i < inventorycrafting.getSizeInventory(); i++ ) {
-			if ( inventorycrafting.getStackInSlot( i ) == null ) {
-				continue;
-			}
+            if (checkItem.hasTagCompound()) {
+                if (checkItem.stackTagCompound.getByte("teir") != 0) {
+                    returnStack = checkItem.copy();
+                    returnStack.stackTagCompound.setByte("teir", ((byte) (returnStack.stackTagCompound.getByte("teir") + 1)));
+                }
+            }
+        }
+        return returnStack;
+    }
 
-			ItemStack checkItem = inventorycrafting.getStackInSlot( i );
-			if ( checkItem.getItem() == null ) {
-				continue;
-			}
+    @Override
+    public int getRecipeSize() {
+        return upgradeCount + 1;
+    }
 
-			if ( checkItem.hasTagCompound() ) {
-				if ( checkItem.stackTagCompound.getByte( "teir" ) != 0 ) {
-					returnStack = checkItem.copy();
-					returnStack.stackTagCompound.setByte( "teir", ( ( byte ) ( returnStack.stackTagCompound.getByte( "teir" ) + 1 ) ) );
-				}
-			}
-
-
-		}
-		return returnStack;
-	}
-
-	@Override
-	public int getRecipeSize() {
-		return upgradeCount + 1;
-	}
-
-	@Override
-	public ItemStack getRecipeOutput() {
-		return null;
-	}
-
+    @Override
+    public ItemStack getRecipeOutput() {
+        return null;
+    }
 }

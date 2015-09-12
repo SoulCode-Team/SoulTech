@@ -9,7 +9,7 @@ package com.SoulSkin.soultech.item;
  */
 public class soulSteel extends baseModItem {
 
-	public soulSteel() {
-		this.setUnlocalizedName( "soulSteel" );
-	}
+    public soulSteel() {
+        this.setUnlocalizedName("soulSteel");
+    }
 }

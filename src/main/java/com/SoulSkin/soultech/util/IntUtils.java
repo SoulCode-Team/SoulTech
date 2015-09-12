@@ -9,23 +9,23 @@ package com.SoulSkin.soultech.util;
  */
 public class IntUtils {
 
-	public static boolean isBetween( int check, int min, int max ) {
-		return check >= min && check <= max;
-	}
+    public static boolean isBetween(int check, int min, int max) {
+        return check >= min && check <= max;
+    }
 
-	public static Integer[] intListToIntegerList( int[] input ) {
-		Integer[] returnList = new Integer[input.length];
-		for ( int i = 0; i < input.length; i++ ) {
-			returnList[i] = input[i];
-		}
-		return returnList;
-	}
+    public static Integer[] intListToIntegerList(int[] input) {
+        Integer[] returnList = new Integer[input.length];
+        for (int i = 0; i < input.length; i++) {
+            returnList[i] = input[i];
+        }
+        return returnList;
+    }
 
-	public static int[] IntegerListToIntList( Integer[] input ) {
-		int[] returnList = new int[input.length];
-		for ( int i = 0; i < input.length; i++ ) {
-			returnList[i] = input[i];
-		}
-		return returnList;
-	}
+    public static int[] IntegerListToIntList(Integer[] input) {
+        int[] returnList = new int[input.length];
+        for (int i = 0; i < input.length; i++) {
+            returnList[i] = input[i];
+        }
+        return returnList;
+    }
 }

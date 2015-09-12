@@ -14,52 +14,50 @@ import java.util.Set;
  */
 public class areaDeathRegistery {
 
-	private static Set< Entity > whitelist;
-	private static Set< Entity > blacklist;
+    private static Set<Entity> whitelist;
+    private static Set<Entity> blacklist;
 
-	// WHITELIST //
-	public static void addEntityToWhitelist( Entity entity ) {
-		whitelist.add( entity );
-	}
+    // WHITELIST //
+    public static void addEntityToWhitelist(Entity entity) {
+        whitelist.add(entity);
+    }
 
-	public static void removeEntityFromWhitelist( Entity entity ) {
-		whitelist.remove( entity );
-	}
+    public static void removeEntityFromWhitelist(Entity entity) {
+        whitelist.remove(entity);
+    }
 
-	public static boolean isEntityInWhitelist( Entity entity ) {
-		Iterator< Entity > iterator = whitelist.iterator();
-		while ( iterator.hasNext() ) {
-			Entity setElement = iterator.next();
-			if ( setElement == entity ) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public static boolean isEntityInWhitelist(Entity entity) {
+        Iterator<Entity> iterator = whitelist.iterator();
+        while (iterator.hasNext()) {
+            Entity setElement = iterator.next();
+            if (setElement == entity) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	// BLACKLIST //
-	public static void addEntityToBlacklist( Entity entity ) {
-		blacklist.add( entity );
-	}
+    // BLACKLIST //
+    public static void addEntityToBlacklist(Entity entity) {
+        blacklist.add(entity);
+    }
 
-	public static void removeEntityFromBlacklist( Entity entity ) {
-		blacklist.remove( entity );
-	}
+    public static void removeEntityFromBlacklist(Entity entity) {
+        blacklist.remove(entity);
+    }
 
-	public static boolean isEntityInBlacklist( Entity entity ) {
-		Iterator< Entity > iterator = blacklist.iterator();
-		while ( iterator.hasNext() ) {
-			Entity setElement = iterator.next();
-			if ( setElement == entity ) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public static boolean isEntityInBlacklist(Entity entity) {
+        Iterator<Entity> iterator = blacklist.iterator();
+        while (iterator.hasNext()) {
+            Entity setElement = iterator.next();
+            if (setElement == entity) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	areaDeathRegistery() {
+    areaDeathRegistery() {
 
-	}
-
-
+    }
 }

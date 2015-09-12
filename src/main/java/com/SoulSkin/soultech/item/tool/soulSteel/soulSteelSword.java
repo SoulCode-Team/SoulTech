@@ -13,9 +13,9 @@ import com.SoulSkin.soultech.soultech;
  */
 public class soulSteelSword extends baseModSword {
 
-	private static soultech MOD;
+    private static soultech MOD;
 
-	public soulSteelSword() {
-		super( MOD.soulSteelTool, MOD.soulSteel, "soulSteel" );
-	}
+    public soulSteelSword() {
+        super(MOD.soulSteelTool, MOD.soulSteel, "soulSteel");
+    }
 }

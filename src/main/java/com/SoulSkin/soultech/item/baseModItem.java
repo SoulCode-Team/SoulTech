@@ -22,27 +22,27 @@ import static cpw.mods.fml.relauncher.Side.CLIENT;
  */
 public class baseModItem extends Item {
 
-	public baseModItem() {
-		super();
-		this.setMaxStackSize( 64 );
-		this.setCreativeTab( STTAB );
-	}
+    public baseModItem() {
+        super();
+        this.setMaxStackSize(64);
+        this.setCreativeTab(STTAB);
+    }
 
-	@SideOnly( CLIENT )
-	public void registerIcons( IIconRegister par1registerIcon ) {
-		this.itemIcon = par1registerIcon.registerIcon( GetTextureNameFull( this ) );
-	}
+    @SideOnly(CLIENT)
+    public void registerIcons(IIconRegister par1registerIcon) {
+        this.itemIcon = par1registerIcon.registerIcon(GetTextureNameFull(this));
+    }
 
-	@Override
-	public void addInformation( ItemStack stack, EntityPlayer player, List list, boolean par4 ) {
-		if ( !StringUtils.getTooltipLocalized( this, 1 ).equals( StringUtils.getTooltipUnlocalized( this, 1 ) ) ) {
-			list.add( StringUtils.getTooltipLocalizedChecked( this, 1 ) );
-		}
-		if ( !StringUtils.getTooltipLocalized( this, 2 ).equals( StringUtils.getTooltipUnlocalized( this, 2 ) ) ) {
-			list.add( StringUtils.getTooltipLocalizedChecked( this, 2 ) );
-		}
-		if ( !StringUtils.getTooltipLocalized( this, 3 ).equals( StringUtils.getTooltipUnlocalized( this, 3 ) ) ) {
-			list.add( StringUtils.getTooltipLocalizedChecked( this, 3 ) );
-		}
-	}
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+        if (!StringUtils.getTooltipLocalized(this, 1).equals(StringUtils.getTooltipUnlocalized(this, 1))) {
+            list.add(StringUtils.getTooltipLocalizedChecked(this, 1));
+        }
+        if (!StringUtils.getTooltipLocalized(this, 2).equals(StringUtils.getTooltipUnlocalized(this, 2))) {
+            list.add(StringUtils.getTooltipLocalizedChecked(this, 2));
+        }
+        if (!StringUtils.getTooltipLocalized(this, 3).equals(StringUtils.getTooltipUnlocalized(this, 3))) {
+            list.add(StringUtils.getTooltipLocalizedChecked(this, 3));
+        }
+    }
 }

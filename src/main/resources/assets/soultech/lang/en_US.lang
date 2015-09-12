@@ -1,9 +1,13 @@
 // Commands //
 commands.rename.usage=/soultech_rename <name>
-commands.search.usage=/search <result_count>
+commands.search.usage=/search <query>
+commands.search_settings.usage=/search_settings <result_count> [SafeSearch]
 
 // General //
 itemGroup.soultech=SoulTech
+message.version.old=SoulTech is an old version!
+message.version.current=SoulTech is up-to-date!
+message.version.dev=Welcome to the Dev version of SoulTech!!
 
 // General Tooltips //
 tooltips.status.activated=Activated
@@ -25,13 +29,14 @@ tile.soulChest.name=Soul Chest
 // Items //
 item.soulShimmer.name=Soul Shimmer
 item.soulSteel.name=Soul Steel
+item.troll.name=TrOlLeD
 
 item.weathermans_Compass.name=Weatherman's Compass
 tooltips.tooltip1.weathermans_Compass=Shift right click to change mode.
 
 item.areaDeath.name=Area Killer
 item.areaDeath.warning=has created an Area Killer.
-tooltips.tooltip1.areaDeath=An aura of death lingers over this item for %i blocks.
+tooltips.tooltip1.areaDeath=An aura of death lingers over this item for %b blocks.
 tooltips.tooltip2.areaDeath=It seems to avoid harming players.
 tooltips.tooltip3.areaDeath=Teir %b
 

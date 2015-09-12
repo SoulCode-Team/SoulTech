@@ -12,9 +12,9 @@ import com.SoulSkin.soultech.soultech;
  */
 public class soulSteelOmniTool extends baseModOmniTool {
 
-	private static soultech MOD;
+    private static soultech MOD;
 
-	public soulSteelOmniTool() {
-		super( MOD.soulSteelTool, MOD.soulSteel, "soulSteel" );
-	}
+    public soulSteelOmniTool() {
+        super(MOD.soulSteelTool, MOD.soulSteel, "soulSteel");
+    }
 }

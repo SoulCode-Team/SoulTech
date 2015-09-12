@@ -15,16 +15,16 @@ import net.minecraft.item.ItemArmor;
  */
 public class soulShimmerLeggings extends baseModArmor {
 
-	private static soultech MOD;
-	private final Item matItem = MOD.soulShimmer;
+    public final int id = 2;
+    private static soultech MOD;
+    private final Item matItem = MOD.soulShimmer;
 
-	public soulShimmerLeggings() {
-		this( MOD.soulShimmerArmor, RenderingRegistry.addNewArmourRendererPrefix( "soulShimmer" ), 2 );
-	}
+    public soulShimmerLeggings() {
+        this(MOD.soulShimmerArmor, RenderingRegistry.addNewArmourRendererPrefix("soulShimmer"), 2);
+    }
 
-	public soulShimmerLeggings( ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4 ) {
-		super( par2EnumArmorMaterial, par3, par4 );
-		this.setUnlocalizedName( matItem.getUnlocalizedName().substring( 5 ) + "Leggings" );
-	}
-
+    public soulShimmerLeggings(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
+        super(par2EnumArmorMaterial, par3, par4);
+        this.setUnlocalizedName(matItem.getUnlocalizedName().substring(5) + "Leggings");
+    }
 }

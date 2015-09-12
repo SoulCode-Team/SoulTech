@@ -9,5 +9,5 @@ package com.SoulSkin.soultech.item;
  */
 public interface IExtendedReach {
 
-	public float getReach(); // default is 1.0D
+    float getReach(); // default is 1.0D
 }

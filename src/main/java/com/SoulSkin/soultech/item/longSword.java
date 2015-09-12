@@ -17,19 +17,19 @@ import net.minecraft.item.ItemSword;
  */
 public class longSword extends ItemSword implements IExtendedReach {
 
-	longSword() {
-		super( soultech.soulSteelTool );
-		this.setCreativeTab( Reference.STTAB );
-		this.setUnlocalizedName( "longSword" );
-	}
+    longSword() {
+        super(soultech.soulSteelTool);
+        this.setCreativeTab(Reference.STTAB);
+        this.setUnlocalizedName("longSword");
+    }
 
-	@SideOnly( Side.CLIENT )
-	public void registerIcons( IIconRegister par1registerIcon ) {
-		this.itemIcon = par1registerIcon.registerIcon( ModTextures.GetTextureNameFull( this ) );
-	}
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister par1registerIcon) {
+        this.itemIcon = par1registerIcon.registerIcon(ModTextures.GetTextureNameFull(this));
+    }
 
-	@Override
-	public float getReach() {
-		return 2.0F;
-	}
+    @Override
+    public float getReach() {
+        return 2.0F;
+    }
 }

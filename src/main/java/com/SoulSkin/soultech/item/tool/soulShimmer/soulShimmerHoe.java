@@ -13,9 +13,9 @@ import com.SoulSkin.soultech.soultech;
  */
 public class soulShimmerHoe extends baseModHoe {
 
-	private static soultech MOD;
+    private static soultech MOD;
 
-	public soulShimmerHoe() {
-		super( MOD.soulShimmerTool, MOD.soulShimmer, "soulShimmer" );
-	}
+    public soulShimmerHoe() {
+        super(MOD.soulShimmerTool, MOD.soulShimmer, "soulShimmer");
+    }
 }

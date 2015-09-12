@@ -14,30 +14,30 @@ import static org.lwjgl.input.Keyboard.isKeyDown;
  */
 public abstract class CommonProxy implements IProxy {
 
-	public void registerRenderers() {
-	}
+    public void registerRenderers() {
+    }
 
-	public String getCurrentLanguage() {
-		return null;
-	}
+    public String getCurrentLanguage() {
+        return null;
+    }
 
-	public void RegisterCommonTickHandler() {
-		// TickRegistry.registerTickHandler(new CommonTickHandler(),
-		// Side.SERVER);
-	}
+    public void RegisterCommonTickHandler() {
+        // TickRegistry.registerTickHandler(new CommonTickHandler(),
+        // Side.SERVER);
+    }
 
-	// From MachineMuse's PowerSuits mod
-	public static boolean shouldAddAdditionalInfo() {
-		if ( instance().getEffectiveSide() == CLIENT ) {
-			if ( isKeyDown( KEY_LSHIFT ) ) {
-				return true;
-			}
-		}
-		return false;
-	}
+    // From MachineMuse's PowerSuits mod
+    public static boolean shouldAddAdditionalInfo() {
+        if (instance().getEffectiveSide() == CLIENT) {
+            if (isKeyDown(KEY_LSHIFT)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public static Object additionalInfoInstructions() {
-		String message = "§oPress §b<SHIFT>§7§o for more information.";
-		return message;
-	}
+    public static Object additionalInfoInstructions() {
+        String message = "§oPress §b<SHIFT>§7§o for more information.";
+        return message;
+    }
 }

@@ -15,15 +15,16 @@ import net.minecraft.item.ItemArmor;
  */
 public class soulShimmerHelmet extends baseModArmor {
 
-	private static soultech MOD;
-	private final Item matItem = MOD.soulShimmer;
+    public final int id = 0;
+    private static soultech MOD;
+    private final Item matItem = MOD.soulShimmer;
 
-	public soulShimmerHelmet() {
-		this( MOD.soulShimmerArmor, RenderingRegistry.addNewArmourRendererPrefix( "soulShimmer" ), 0 );
-	}
+    public soulShimmerHelmet() {
+        this(MOD.soulShimmerArmor, RenderingRegistry.addNewArmourRendererPrefix("soulShimmer"), 0);
+    }
 
-	public soulShimmerHelmet( ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4 ) {
-		super( par2EnumArmorMaterial, par3, par4 );
-		this.setUnlocalizedName( matItem.getUnlocalizedName().substring( 5 ) + "Helmet" );
-	}
+    public soulShimmerHelmet(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
+        super(par2EnumArmorMaterial, par3, par4);
+        this.setUnlocalizedName(matItem.getUnlocalizedName().substring(5) + "Helmet");
+    }
 }

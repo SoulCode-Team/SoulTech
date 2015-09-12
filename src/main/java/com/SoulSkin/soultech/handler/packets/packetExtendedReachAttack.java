@@ -13,41 +13,41 @@ import io.netty.buffer.ByteBuf;
  */
 public class packetExtendedReachAttack implements IMessage {
 
-	private int entityId;
+    private int entityId;
 
-	public packetExtendedReachAttack() {
-		// need this constructor
-	}
+    public packetExtendedReachAttack() {
+        // need this constructor
+    }
 
-	public packetExtendedReachAttack( int parEntityId ) {
-		entityId = parEntityId;
-		// DEBUG
+    public packetExtendedReachAttack(int parEntityId) {
+        entityId = parEntityId;
+        // DEBUG
 //		System.out.println( "Constructor" );
-	}
+    }
 
-	@Override
-	public void fromBytes( ByteBuf buf ) {
-		entityId = ByteBufUtils.readVarInt( buf, 4 );
-		// DEBUG
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        entityId = ByteBufUtils.readVarInt(buf, 4);
+        // DEBUG
 //		System.out.println( "fromBytes" );
-	}
+    }
 
-	@Override
-	public void toBytes( ByteBuf buf ) {
-		ByteBufUtils.writeVarInt( buf, entityId, 4 );
-		// DEBUG
+    @Override
+    public void toBytes(ByteBuf buf) {
+        ByteBufUtils.writeVarInt(buf, entityId, 4);
+        // DEBUG
 //		System.out.println( "toBytes encoded" );
-	}
+    }
 
-	public static class Handler implements IMessageHandler< packetExtendedReachAttack, IMessage > {
+    public static class Handler implements IMessageHandler<packetExtendedReachAttack, IMessage> {
 
-		@Override
-		public IMessage onMessage( final packetExtendedReachAttack message, MessageContext ctx ) {
-			// DEBUG
+        @Override
+        public IMessage onMessage(final packetExtendedReachAttack message, MessageContext ctx) {
+            // DEBUG
 //			System.out.println( "Message received" );
-			// Know it will be on the server so make it thread-safe
+            // Know it will be on the server so make it thread-safe
 /*			final EntityPlayerMP thePlayer = ( EntityPlayerMP ) soultech.proxy.getPlayerEntityFromContext( ctx );
-			thePlayer.getServerForPlayer().addScheduledTask(
+            thePlayer.getServerForPlayer().addScheduledTask(
 					new Runnable() {
 						@Override
 						public void run() {
@@ -74,7 +74,7 @@ public class packetExtendedReachAttack implements IMessage {
 					}
 			);
 */
-			return null; // no response message
-		}
-	}
+            return null; // no response message
+        }
+    }
 }

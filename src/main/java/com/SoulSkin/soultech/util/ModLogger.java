@@ -16,39 +16,39 @@ import static org.apache.logging.log4j.Level.*;
  */
 public class ModLogger {
 
-	public static void log( Level logLevel, Object object ) {
-		FMLLog.log( MOD_NAME, logLevel, valueOf( object ) );
-	}
+    public static void log(Level logLevel, Object object) {
+        FMLLog.log(MOD_NAME, logLevel, valueOf(object));
+    }
 
-	public static void all( Object object ) {
-		log( ALL, object );
-	}
+    public static void all(Object object) {
+        log(ALL, object);
+    }
 
-	public static void debug( Object object ) {
-		log( DEBUG, object );
-	}
+    public static void debug(Object object) {
+        log(DEBUG, object);
+    }
 
-	public static void error( Object object ) {
-		log( ERROR, object );
-	}
+    public static void error(Object object) {
+        log(ERROR, object);
+    }
 
-	public static void fatal( Object object ) {
-		log( FATAL, object );
-	}
+    public static void fatal(Object object) {
+        log(FATAL, object);
+    }
 
-	public static void info( Object object ) {
-		log( INFO, object );
-	}
+    public static void info(Object object) {
+        log(INFO, object);
+    }
 
-	public static void off( Object object ) {
-		log( OFF, object );
-	}
+    public static void off(Object object) {
+        log(OFF, object);
+    }
 
-	public static void trace( Object object ) {
-		log( TRACE, object );
-	}
+    public static void trace(Object object) {
+        log(TRACE, object);
+    }
 
-	public static void warn( Object object ) {
-		log( WARN, object );
-	}
+    public static void warn(Object object) {
+        log(WARN, object);
+    }
 }

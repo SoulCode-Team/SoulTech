@@ -14,34 +14,33 @@ import java.util.Random;
  */
 public class baseFakeBlock extends baseModBlock {
 
-	private static boolean remove = false;
+    private static boolean remove = false;
 
-	public baseFakeBlock( Material material ) {
-		this( material, false );
-	}
+    public baseFakeBlock(Material material) {
+        this(material, false);
+    }
 
-	public baseFakeBlock( Material material, boolean remv ) {
-		super( material );
-		remove = remv;
+    public baseFakeBlock(Material material, boolean remv) {
+        super(material);
+        remove = remv;
+    }
 
-	}
+    public int quantityDropped(Random par1Random) {
+        return 0;
+    }
 
-	public int quantityDropped( Random par1Random ) {
-		return 0;
-	}
-
-	// Removal Section //
+    // Removal Section //
 
 
-	public void updateTick( World par1World, int par2, int par3, int par4, Random par5Random ) {
-		if ( remove ) {
-			par1World.setBlockToAir( par2, par3, par4 );
-		}
-	}
+    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
+        if (remove) {
+            par1World.setBlockToAir(par2, par3, par4);
+        }
+    }
 
-	public void onNeighborBlockChange( World par1World, int par2, int par3, int par4, int par5 ) {
-		if ( remove ) {
-			par1World.setBlockToAir( par2, par3, par4 );
-		}
-	}
+    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+        if (remove) {
+            par1World.setBlockToAir(par2, par3, par4);
+        }
+    }
 }

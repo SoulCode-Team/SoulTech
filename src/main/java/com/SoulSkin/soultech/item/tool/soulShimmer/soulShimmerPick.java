@@ -13,9 +13,9 @@ import com.SoulSkin.soultech.soultech;
  */
 public class soulShimmerPick extends baseModPick {
 
-	private static soultech MOD;
+    private static soultech MOD;
 
-	public soulShimmerPick() {
-		super( MOD.soulShimmerTool, MOD.soulShimmer, "soulShimmer" );
-	}
+    public soulShimmerPick() {
+        super(MOD.soulShimmerTool, MOD.soulShimmer, "soulShimmer");
+    }
 }

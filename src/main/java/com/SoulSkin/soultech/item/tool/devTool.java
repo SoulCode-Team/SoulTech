@@ -17,23 +17,23 @@ import java.util.List;
 
 public class devTool extends baseModTool {
 
-	devTool() {
-		this.setUnlocalizedName( StringUtils.prefixModID( "devTool" ) );
-	}
+    devTool() {
+        this.setUnlocalizedName(StringUtils.prefixModID("devTool"));
+    }
 
-	@Override
-	public ItemStack onItemRightClick( ItemStack itemStackIn, World worldIn, EntityPlayer player ) {
-		if ( !worldIn.isRemote ) {
-			if ( player.isSneaking() ) {
-			}
-		}
-		return itemStackIn;
-	}
+    @Override
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player) {
+        if (!worldIn.isRemote) {
+            if (player.isSneaking()) {
+            }
+        }
+        return itemStackIn;
+    }
 
-	@Override
-	public void addInformation( ItemStack stack, EntityPlayer player, List list, boolean par4 ) {
-		list.add( StringUtils.getFormattedTooltipLocalized( this, 1, player.getCommandSenderName() ) );//TODO check to make sure this doesn't give tons of empty lines.
-		list.add( StringUtils.getTooltipLocalizedChecked( this, 2 ) );
-		list.add( StringUtils.getTooltipLocalizedChecked( this, 3 ) );
-	}
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+        list.add(StringUtils.getFormattedTooltipLocalized(this, 1, player.getCommandSenderName()));//TODO check to make sure this doesn't give tons of empty lines.
+        list.add(StringUtils.getTooltipLocalizedChecked(this, 2));
+        list.add(StringUtils.getTooltipLocalizedChecked(this, 3));
+    }
 }

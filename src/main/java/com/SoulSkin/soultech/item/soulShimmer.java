@@ -9,7 +9,7 @@ package com.SoulSkin.soultech.item;
  */
 public class soulShimmer extends baseModItem {
 
-	public soulShimmer() {
-		this.setUnlocalizedName( "soulShimmer" );
-	}
+    public soulShimmer() {
+        this.setUnlocalizedName("soulShimmer");
+    }
 }

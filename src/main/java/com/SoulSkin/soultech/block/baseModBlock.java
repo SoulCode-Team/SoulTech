@@ -18,16 +18,15 @@ import static cpw.mods.fml.relauncher.Side.CLIENT;
  */
 public class baseModBlock extends Block {
 
-	public baseModBlock( Material material ) {
-		super( material );
-		this.setCreativeTab( STTAB );
-	}
+    public baseModBlock(Material material) {
+        super(material);
+        this.setCreativeTab(STTAB);
+    }
 
-	@SideOnly( CLIENT )
-	public void registerIcons( IIconRegister par1registerIcon ) {
+    @SideOnly(CLIENT)
+    public void registerIcons(IIconRegister par1registerIcon) {
 //		System.out.println( "_______________________________BLOCK TEXTURE_____________________________________________" );
 //		ModLogger.info( "TEXTURE_LOC: " + ModTextures.GetTextureNameFull( this ) );
-		this.blockIcon = par1registerIcon.registerIcon( GetTextureNameFull( this ) );
-	}
-
+        this.blockIcon = par1registerIcon.registerIcon(GetTextureNameFull(this));
+    }
 }

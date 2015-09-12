@@ -13,9 +13,9 @@ import com.SoulSkin.soultech.soultech;
  */
 public class soulSteelPick extends baseModPick {
 
-	private static soultech MOD;
+    private static soultech MOD;
 
-	public soulSteelPick() {
-		super( MOD.soulSteelTool, MOD.soulSteel, "soulSteel" );
-	}
+    public soulSteelPick() {
+        super(MOD.soulSteelTool, MOD.soulSteel, "soulSteel");
+    }
 }

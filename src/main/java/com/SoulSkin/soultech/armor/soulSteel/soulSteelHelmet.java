@@ -14,15 +14,16 @@ import net.minecraft.item.Item;
  */
 public class soulSteelHelmet extends baseModArmor {
 
-	private static soultech MOD;
-	private final Item matItem = MOD.soulSteel;
+    public final int id = 0;
+    private static soultech MOD;
+    private final Item matItem = MOD.soulSteel;
 
-	public soulSteelHelmet() {
-		this( MOD.soulSteelArmor, RenderingRegistry.addNewArmourRendererPrefix( "soulSteel" ), 0 );
-	}
+    public soulSteelHelmet() {
+        this(MOD.soulSteelArmor, RenderingRegistry.addNewArmourRendererPrefix("soulSteel"), 0);
+    }
 
-	public soulSteelHelmet( ArmorMaterial par2EnumArmorMaterial, int par3, int par4 ) {
-		super( par2EnumArmorMaterial, par3, par4 );
-		this.setUnlocalizedName( matItem.getUnlocalizedName().substring( 5 ) + "Helmet" );
-	}
+    public soulSteelHelmet(ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
+        super(par2EnumArmorMaterial, par3, par4);
+        this.setUnlocalizedName(matItem.getUnlocalizedName().substring(5) + "Helmet");
+    }
 }

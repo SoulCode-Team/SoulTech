@@ -1,0 +1,8 @@
+Builder of Far-Reach (p2p builder)
+Wand of Locomotion (point and move)
+Dislocation Wrench (pick and place Blocks/Entities/TEs)
+Soul TNT (sucks all entities around into itself; the more it gets, the longer it lasts.)
+Ghostly Fuse (sets off TNT in surrounding area)
+Soul Tether (Leaves entity at use location that keek inventory (not hotbar&armor) and returns when returns to location)
+NUKE!!!
+"Sunny Disposition" potion effect that creates lights around player
